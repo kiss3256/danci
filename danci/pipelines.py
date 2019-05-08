@@ -16,7 +16,7 @@ class DanciPipeline(object):
         self.cursor.execute('''CREATE TABLE IF NOT EXISTS ROOTS
             (id   INTEGER PRIMARY KEY,
             root  VARCHAR(32) NOT NULL,
-            discription VARCHARP(80));''')
+            description VARCHARP(80));''')
 
         self.cursor.execute('''CREATE TABLE IF NOT EXISTS WORDS
             (id   INTEGER PRIMARY KEY,
@@ -27,8 +27,8 @@ class DanciPipeline(object):
 
 
     def process_item(self, item, spider):
-        self.cursor.execute('INSERT INTO ROOTS(root, discription) VALUES(?,?)',
-            (item['root'], item['discription']))
+        self.cursor.execute('INSERT INTO ROOTS(root, description) VALUES(?,?)',
+            (item['root'], item['description']))
 
         p_id = self.cursor.lastrowid
         for word in item['words']:
